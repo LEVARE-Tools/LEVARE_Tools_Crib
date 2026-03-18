@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>LEVARE | Sistema</title>
+
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+    <header class="top-navbar">
+
+        <div class="nav-left">
+            <img src="../assets/images/logo.png" class="nav-logo">
+            <h1>LEVARE Tools</h1>
+        </div>
+
+    </header>
+
+
+    <main class="main-content">
+
+        <section class="content-area">
+
+            <!-- ================= HOME ================= -->
+
+            <div id="home" class="modulo">
+
+                <div class="card">
+                    <h2>Sistema</h2>
+                    <p>Panel de administración del sistema.</p>
+                </div>
+
+                <div class="cards">
+
+                    <div class="card">
+                        <h2>Privilegios</h2>
+                        <p>Administrar roles.</p>
+                        <button id="goPrivilegios">Administrar</button>
+                    </div>
+
+                    <div class="card">
+                        <h2>Usuarios</h2>
+                        <p>Gestión de usuarios.</p>
+                        <button id="goUsuarios">Administrar</button>
+                    </div>
+
+                    <div class="card">
+                        <h2>Registro del sistema</h2>
+                        <p>Ver eventos.</p>
+                        <button id="goRegistro">Ver registros</button>
+                    </div>
+
+                    <div class="card">
+                        <h2>Base de datos</h2>
+                        <p>Estado de BD.</p>
+                        <button id="goBD">Ver BD</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- ================= USUARIOS ================= -->
+
+            <div id="usuarios" class="modulo hidden">
+
+                <div class="card">
+
+                    <h2>CRUD Usuarios</h2>
+
+                    <form id="userForm">
+
+                        <input type="text" placeholder="Usuario">
+                        <input type="text" placeholder="Nombre">
+                        <input type="text" placeholder="Apellido">
+                        <input type="email" placeholder="Correo">
+
+                        <select>
+                            <option>Administrador</option>
+                            <option>Usuario</option>
+                        </select>
+
+                        <button type="submit">Guardar</button>
+
+                        <button type="button" id="volverUsuarios">Volver</button>
+
+                    </form>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaUsuarios">
+                            <tr>
+                                <td colspan="6">Sin datos</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+
+            <!-- ================= PRIVILEGIOS ================= -->
+
+            <div id="privilegios" class="modulo hidden">
+
+                <div class="card">
+
+                    <h2>Gestión de Privilegios</h2>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaPrivilegios">
+
+                            <tr>
+                                <td colspan="4">Sin datos</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <button id="volverPrivilegios">Volver</button>
+
+                </div>
+            </div>
+
+
+
+            <!-- ================= REGISTRO ================= -->
+
+            <div id="registro" class="modulo hidden">
+
+                <div class="card">
+
+                    <h2>Registro del Sistema</h2>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Origen</th>
+                                <th>Fecha</th>
+                                <th>Acción</th>
+                                <th>Estado</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaRegistro">
+
+                            <tr>
+                                <td colspan="6">Sin registros</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <button id="volverRegistro">Volver</button>
+
+                </div>
+            </div>
+
+
+            <!-- ================= BASE DE DATOS ================= -->
+
+            <div id="bd" class="modulo hidden">
+
+                <div class="card">
+
+                    <h2>Base de Datos</h2>
+
+                    <p>Estado de conexión de la base de datos.</p>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Tabla</th>
+                                <th>Registros</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Usuarios</td>
+                                <td>---</td>
+                                <td>OK</td>
+                            </tr>
+
+                            <tr>
+                                <td>Logs</td>
+                                <td>---</td>
+                                <td>OK</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <button id="volverBD">Volver</button>
+
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+
+
+    <script>
+
+        function mostrarModulo(id) {
+
+            document.querySelectorAll(".modulo").forEach(m => {
+                m.classList.add("hidden")
+            })
+
+            document.getElementById(id).classList.remove("hidden")
+
+        }
+
+
+        document.getElementById("goUsuarios").onclick = () => mostrarModulo("usuarios")
+
+        document.getElementById("goPrivilegios").onclick = () => mostrarModulo("privilegios")
+
+        document.getElementById("goRegistro").onclick = () => mostrarModulo("registro")
+
+        document.getElementById("goBD").onclick = () => mostrarModulo("bd")
+
+
+        document.getElementById("volverUsuarios").onclick = () => mostrarModulo("home")
+
+        document.getElementById("volverPrivilegios").onclick = () => mostrarModulo("home")
+
+        document.getElementById("volverRegistro").onclick = () => mostrarModulo("home")
+
+        document.getElementById("volverBD").onclick = () => mostrarModulo("home")
+
+    </script>
+
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #111;
+            color: white;
+        }
+
+        .card {
+            background: #1c1c1c;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+        }
+    </style>
+
+
+</body>
+
+</html>

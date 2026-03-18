@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#593ba4" />
+  <meta name="description" content="LEVARE TOOLS - Inicio de sesión" />
+
+  <title>LEVARE TOOLS | Login</title>
+
+  <link rel="icon" type="image/png" href="./assets/icons/favicon.png" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body class="login-page">
+  <div class="background"></div>
+
+  <main class="login-wrapper">
+    <section class="login-box">
+      <img src="./assets/images/logo.png" alt="LEVARE TOOLS" class="logo" />
+
+      <h1>LEVARE TOOLS</h1>
+      <p>
+        Acceso al sistema de gestión de herramientas, usuarios, consultas y control operativo.
+      </p>
+
+      <form id="loginForm" novalidate>
+        <input id="email" type="email" placeholder="Correo electrónico" autocomplete="username" required />
+
+        <input id="password" type="password" placeholder="Contraseña" autocomplete="current-password" required />
+
+        <button id="btnLogin" type="submit">Iniciar sesión</button>
+        <p id="msg" class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>
