@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LEVARE | Panel de Almacén</title>
+    <link rel="manifest" href="manifest.json">
+    <!-- SheetJS -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <!-- NAVBAR SUPERIOR COMPLETO -->
+    <header class="top-navbar">
+        <div class="nav-left">
+            <img src="./assets/logo.png" class="nav-logo" alt="Logo Levare">
+        </div>
+        <nav class="nav-menu" id="navMenu">
+            <button class="nav-btn" onclick="window.location.href='Inicio.html'">INICIO</button>
+            <button class="nav-btn" onclick="window.location.href='Sistema.html'">SISTEMA</button>
+            <button class="nav-btn" onclick="window.location.href='Herramientas.html'">HERRAMIENTAS</button>
+            <button class="nav-btn" onclick="window.location.href='EPP.html'">EPP</button>
+            <button class="nav-btn" onclick="window.location.href='Consultas.html'">CONSULTAS</button>
+            <button class="nav-btn logout" id="btnLogout">CERRAR SESIÓN</button>
+        </nav>
+        <button class="hamburger" id="btnHamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+
+    <section class="content-area">
+        <!-- Imagen de fondo y overlay -->
+        <div class="right-bg"></div>
+        <div class="overlay"></div>
+
+        <div class="content-overlay">
+            <div class="card">
+                <h2 class="card-title">Listado</h2>
+                <p class="card-sub">Aquí se muestran los datos registrados en el sistema.</p>
+                <p>Busca cualquier dato registrado.</p>
+
+                <!-- Cargar Excel -->
+                <div class="excel-card">
+                    <label>Seleccionar archivo Excel</label><br><br>
+                    <input type="file" id="excelInput" accept=".xlsx,.xls">
+                    <br>
+                    <button onclick="cargarExcel()">Cargar Excel</button>
+                </div>
+
+                <!-- Acciones -->
+                <div class="excel-card">
+                    <button onclick="guardarEnFirebase()">Guardar en Firebase</button>
+                    <button onclick="cargarDesdeFirebase()">Cargar desde Firebase</button>
+                    <button onclick="exportarExcel()">Descargar Excel</button>
+                </div>
+
+                <!-- Tabla -->
+                <div class="excel-card">
+                    <div id="tabla"></div>
+                </div>
+
+                <div id="mensaje"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        /* CONFIGURACIÓN FIREBASE */
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "levare-tools.firebaseapp.com",
+            projectId: "levare-tools",
+            storageBucket: "levare-tools.appspot.com",
+            messagingSenderId: "452548487829",
+            appId: "1:452548487829:web:a195a180ce43cfa47e499c"
+        };
+
+        /* INICIALIZAR */
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let datosTabla = [];
+
+        /* ================= CARGAR EXCEL ================= */
+        window.cargarExcel = function () {
+            const file = document.getElementById('excelInput').files[0];
+            if (!file) return alert("Selecciona un archivo");
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const hoja = workbook.Sheets[workbook.SheetNames[0]];
+                datosTabla = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+                mostrarTabla(datosTabla);
+            };
+            reader.readAsArrayBuffer(file);
+        };
+
+        /* ================= MOSTRAR TABLA ================= */
+        function mostrarTabla(data) {
+            let html = "<table>";
+            data.forEach((fila, i) => {
+                html += "<tr>";
+                fila.forEach(celda => {
+                    html += i === 0
+                        ? `<th>${celda || ""}</th>`
+                        : `<td contenteditable="true">${celda || ""}</td>`;
+                });
+                html += "</tr>";
+            });
+            html += "</table>";
+            document.getElementById("tabla").innerHTML = html;
+        }
+
+        /* ================= ACTUALIZAR DATOS DESDE TABLA ================= */
+        function actualizarDatosDesdeTabla() {
+            const filas = document.querySelectorAll("#tabla table tr");
+            datosTabla = [];
+
+            filas.forEach(fila => {
+                const celdas = fila.querySelectorAll("th, td");
+                let filaArray = [];
+                celdas.forEach(celda => filaArray.push(celda.innerText));
+                datosTabla.push(filaArray);
+            });
+        }
+
+        /* ================= GUARDAR EN FIREBASE ================= */
+        window.guardarEnFirebase = async function () {
+            actualizarDatosDesdeTabla();
+
+            if (!datosTabla.length) return alert("No hay datos");
+
+            const encabezados = datosTabla[0];
+            const filas = datosTabla.slice(1);
+
+            const datosObjetos = filas.map(fila => {
+                let obj = {};
+                encabezados.forEach((enc, i) => {
+                    obj[enc] = fila[i] || "";
+                });
+                return obj;
+            });
+
+            try {
+                await setDoc(doc(db, "excelData", "inventario"), {
+                    tabla: datosObjetos,
+                    fecha: new Date()
+                });
+
+                alert("Datos guardados correctamente");
+            } catch (error) {
+                alert("Error al guardar: " + error.message);
+            }
+        };
+
+        /* ================= CARGAR DESDE FIREBASE ================= */
+        window.cargarDesdeFirebase = async function () {
+
+            try {
+                const docRef = doc(db, "excelData", "inventario");
+                const docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                    alert("No hay datos guardados");
+                    return;
+                }
+
+                const datos = docSnap.data().tabla;
+
+                if (!datos.length) {
+                    alert("Documento vacío");
+                    return;
+                }
+
+                const encabezados = Object.keys(datos[0]);
+                const filas = datos.map(obj => Object.values(obj));
+
+                datosTabla = [encabezados, ...filas];
+
+                mostrarTabla(datosTabla);
+
+            } catch (error) {
+                alert("Error al cargar: " + error.message);
+            }
+        };
+
+        /* ================= EXPORTAR EXCEL ================= */
+        window.exportarExcel = function () {
+            actualizarDatosDesdeTabla();
+
+            if (!datosTabla.length) return alert("No hay datos para exportar");
+
+            const ws = XLSX.utils.aoa_to_sheet(datosTabla);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Datos");
+            XLSX.writeFile(wb, "excel_modificado.xlsx");
+        };
+
+        /* ================= PWA ================= */
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('servie-worker.js');
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>LEVARE - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Panel profesional de gestión LEVARE Tools." />
+
+  <link rel="icon" type="image/png" href="../assets/images/logo.png" />
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="stylesheet" href="../CSS/style.css" />
+</head>
+
+<body class="dashboard-page">
+  <header class="top-navbar">
+    <div class="nav-left">
+      <img src="../assets/images/logo.png" class="nav-logo" alt="Logo Levare" />
+      <div class="brand-box">
+        <h1 class="brand-title">LEVARE Tools</h1>
+        <p class="brand-subtitle">Panel principal del sistema</p>
+      </div>
+    </div>
+
+    <nav class="nav-menu" id="navMenu" aria-label="Menú principal">
+      <a href="./Inicio.html" class="nav-btn">INICIO</a>
+      <a href="./Sistema.html" class="nav-btn" data-menu="sistema">SISTEMA</a>
+      <a href="./Herramientas.html" class="nav-btn">HERRAMIENTAS</a>
+      <a href="./EPP.html" class="nav-btn">EPP</a>
+      <a href="./Consultas.html" class="nav-btn">CONSULTAS</a>
+      <button class="nav-btn logout" id="btnLogout" type="button">CERRAR SESIÓN</button>
+    </nav>
+
+    <button class="hamburger" id="btnHamburger" aria-label="Abrir menú" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main class="main-content">
+    <section class="dashboard-hero">
+      <div class="hero-card">
+        <div class="hero-text">
+          <span class="hero-badge">LEVARE</span>
+          <h2>Bienvenido al Dashboard</h2>
+          <p>
+            Panel profesional para la gestión de usuarios, herramientas,
+            EPP, consultas y monitoreo del sistema.
+          </p>
+          <p id="userEmail" class="user-line">Cargando usuario...</p>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img src="../assets/images/logo.png" alt="Logo principal LEVARE" class="hero-image" />
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="dash-card">
+        <h3>Inicio</h3>
+        <p>Vista general del sistema y accesos rápidos.</p>
+        <a href="./Inicio.html" class="card-link">Abrir módulo</a>
+      </article>
+
+      <article class="dash-card" data-card="sistema">
+        <h3>Sistema</h3>
+        <p>Administración de usuarios, roles, privilegios y control total.</p>
+        <a href="./Sistema.html" class="card-link">Abrir módulo</a>
+      </article>
+
+      <article class="dash-card">
+        <h3>Herramientas</h3>
+        <p>Inventario, control, seguimiento y consulta de herramientas.</p>
+        <a href="./Herramientas.html" class="card-link">Abrir módulo</a>
+      </article>
+
+      <article class="dash-card">
+        <h3>EPP</h3>
+        <p>Control del equipo de protección personal y movimientos.</p>
+        <a href="./EPP.html" class="card-link">Abrir módulo</a>
+      </article>
+
+      <article class="dash-card">
+        <h3>Consultas</h3>
+        <p>Búsqueda avanzada de registros, objetos y usuarios.</p>
+        <a href="./Consultas.html" class="card-link">Abrir módulo</a>
+      </article>
+    </section>
+  </main>
+
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Levare - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="./assets/images/logo.svg">
+    <link rel="shortcut icon" type="image/png" href="https://levare.com/themes/main/assets/images/favicon.svg">
+    <meta name="description"
+        content="Levare supplies specialized electric submersible pumps (ESP), PCPs and horizontal pumping systems (HPS) for the oil and gas industry" />
+    <link href="https://levare.com/themes/main/dist/css/styles.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="manifest" href="./manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYTF3087JM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FYTF3087JM');
+    </script>
+</head>
+
+<body>
+    <header id="layout-header" class="sticky top-0 bg-white z-[51]">
+        <div class="outline outline-1 outline-gray-200">
+            <nav class="header flex justify-between container">
+                <div class="flex space-x-3 lg:space-x-10 lg:py-0 w-full items-center">
+                    <div class="header__logos flex items-center" data-logos>
+                        <img class="h-[23px] md:h-7.5 lg:h-[35px]" src="./assets/images/levare.png">
+                    </div>
+                    <div class="header__navs show" data-navs>
+                        <a href="https://levare.com/contact" class="header__link ">Contact Us</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="background"></div>
+
+    <div class="login-box">
+        <img src="./assets/images/favicon.png" alt="LEVARE Logo" class="logo">
+        <h2>Iniciar Sesión</h2>
+
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Usuario o Email" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+            <div id="msg" style="margin-top:10px;"></div>
+        </form>
+    </div>
+
+    <script type="module" src="./js/app.js"></script>
+
+</body>
+
+</html>

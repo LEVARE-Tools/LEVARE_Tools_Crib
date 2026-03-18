@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LEVARE | Registro del Sistema</title>
+
+    <link rel="icon" type="image/png" href="../assets/images/logo.png" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="stylesheet" href="../CSS/style.css" />
+</head>
+
+<body>
+    <header class="top-navbar">
+        <div class="nav-left">
+            <img src="../assets/images/logo.png" class="nav-logo" alt="Logo Levare" />
+        </div>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="./Inicio.html" class="nav-btn">INICIO</a>
+            <a href="./Sistema.html" class="nav-btn" data-menu="sistema">SISTEMA</a>
+            <a href="./Herramientas.html" class="nav-btn">HERRAMIENTAS</a>
+            <a href="./EPP.html" class="nav-btn">EPP</a>
+            <a href="./Consultas.html" class="nav-btn">CONSULTAS</a>
+            <button class="nav-btn logout" id="btnLogout" type="button">CERRAR SESIÓN</button>
+        </nav>
+
+        <button class="hamburger" id="btnHamburger" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main class="main-content">
+        <section class="content-area">
+            <div class="content-overlay">
+                <div class="card">
+                    <h2 class="card-title">Registro del Sistema</h2>
+                    <p class="card-sub">
+                        Monitoreo de eventos del sistema.
+                    </p>
+
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Origen</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Acción</th>
+                                    <th>Estado</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaRegistroSistema">
+                                <tr>
+                                    <td colspan="6">Cargando registros...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../js/registroSistema.js"></script>
+</body>
+
+</html>

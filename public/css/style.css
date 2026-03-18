@@ -1,0 +1,787 @@
+/* =====================================================
+   LEVARE TOOLS - STYLE.CSS GENERAL
+   Ubicación: /public/CSS/style.css
+===================================================== */
+
+/* =========================
+   RESET / BASE
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+body {
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* =========================
+   COLORES BASE
+========================= */
+:root {
+    --primary: #593ba4;
+    --primary-dark: #452d80;
+    --primary-soft: rgba(89, 59, 164, 0.10);
+    --white: #ffffff;
+    --danger: #dc2626;
+    --danger-dark: #b91c1c;
+    --success: #16a34a;
+    --warning-bg: #fff3a3;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #dbe1ea;
+    --bg-soft: #f5f7fb;
+    --card-shadow: 0 10px 28px rgba(24, 39, 75, 0.08);
+    --card-shadow-lg: 0 16px 40px rgba(24, 39, 75, 0.10);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+}
+
+/* =========================
+   LOGIN
+========================= */
+.background {
+    background-image: url("../assets/images/fondoApp.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.login-box {
+    background-color: rgb(245, 246, 248);
+    width: 100%;
+    max-width: 380px;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    color: black;
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
+}
+
+.logo {
+    width: 100px;
+    margin: 0 auto 20px;
+}
+
+.login-box h1,
+.login-box h2 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.login-box p {
+    color: var(--muted);
+}
+
+.login-box input,
+.login-box select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: black;
+}
+
+.login-box input:focus,
+.login-box select:focus {
+    background-color: rgb(245, 246, 248);
+    outline: none;
+    border-color: var(--primary);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.login-box button:hover {
+    background-color: var(--primary-dark);
+}
+
+.form-message,
+#msg,
+.system-msg {
+    margin-top: 10px;
+    font-weight: 700;
+    min-height: 22px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.top-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary);
+    color: var(--white);
+    padding: 14px 22px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 4px;
+}
+
+.brand-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.brand-subtitle {
+    margin: 3px 0 0;
+    font-size: 12px;
+    opacity: 0.92;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    border: none;
+    background: #ffffff;
+    color: var(--primary);
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-1px);
+    background: #efeafd;
+}
+
+.nav-btn.logout {
+    background: var(--danger);
+    color: #fff;
+}
+
+.nav-btn.logout:hover {
+    background: var(--danger-dark);
+}
+
+.hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #fff;
+    margin: 4px 0;
+    border-radius: 999px;
+}
+
+/* =========================
+   LAYOUT GENERAL
+========================= */
+.main-content {
+    padding: 28px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.content-area {
+    width: 100%;
+}
+
+.content-overlay {
+    width: 100%;
+}
+
+.page-title {
+    margin: 0 0 18px;
+    font-size: 28px;
+    color: var(--text);
+}
+
+.page-subtitle {
+    color: var(--muted);
+    margin-top: -8px;
+    margin-bottom: 24px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+.dashboard-page {
+    background:
+        radial-gradient(circle at top right, rgba(89, 59, 164, 0.14), transparent 26%),
+        linear-gradient(180deg, #f6f7fb 0%, #eef2f8 100%);
+}
+
+.dashboard-hero {
+    margin-bottom: 24px;
+}
+
+.hero-card {
+    background: #fff;
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: var(--card-shadow-lg);
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(89, 59, 164, 0.12);
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.hero-text h2 {
+    margin: 0 0 10px;
+    font-size: 32px;
+    color: #111827;
+}
+
+.hero-text p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+.user-line {
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 12px;
+}
+
+.hero-image-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 280px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffffff, #f3effd);
+    padding: 24px;
+    box-shadow: inset 0 0 0 1px rgba(89, 59, 164, 0.08);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.dash-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid #edf0f6;
+}
+
+.dash-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.dash-card p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.card-link {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.card-link:hover {
+    background: var(--primary-dark);
+}
+
+/* =========================
+   TARJETAS GENERALES
+========================= */
+.card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    margin: 0;
+    color: #111827;
+    font-size: 22px;
+}
+
+.card-sub {
+    color: var(--muted);
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   BOTONES GENERALES
+========================= */
+.primary-btn,
+.secondary-btn,
+.icon-btn,
+.table-btn {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+}
+
+.primary-btn:hover {
+    background: var(--primary-dark);
+}
+
+.secondary-btn {
+    background: #e5e7eb;
+    color: #111827;
+    padding: 10px 14px;
+}
+
+.secondary-btn:hover {
+    background: #d1d5db;
+}
+
+.icon-btn,
+.table-btn {
+    background: #f3f4f6;
+    color: #111827;
+    padding: 8px 12px;
+}
+
+.icon-btn:hover,
+.table-btn:hover {
+    background: #e5e7eb;
+}
+
+.danger-btn {
+    background: var(--danger);
+    color: #fff;
+}
+
+.danger-btn:hover {
+    background: var(--danger-dark);
+}
+
+/* =========================
+   GRID DE CARDS
+========================= */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+.user-form,
+.system-form,
+.form-block {
+    margin-top: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 700;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: #111827;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0 20px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   TABLAS
+========================= */
+.table-wrap,
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 14px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.data-table thead {
+    background: var(--primary);
+    color: #fff;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #edf0f6;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.data-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+/* =========================
+   BADGES
+========================= */
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge-user {
+    background: rgba(89, 59, 164, 0.10);
+    color: var(--primary);
+}
+
+.badge-admin {
+    background: rgba(192, 57, 43, 0.15);
+    color: #c0392b;
+}
+
+/* =========================
+   CONSULTAS / RESULTADOS
+========================= */
+.search-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.search-bar input,
+.search-bar select {
+    min-width: 220px;
+    flex: 1;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.highlight {
+    background: var(--warning-bg);
+    color: #111827;
+    font-weight: 700;
+    padding: 0 2px;
+    border-radius: 4px;
+}
+
+.no-results {
+    padding: 12px;
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 10px;
+    margin-top: 12px;
+}
+
+.info-results {
+    padding: 12px;
+    background: #e0f2fe;
+    color: #075985;
+    border-radius: 10px;
+    margin-top: 12px;
+}
+
+/* =========================
+   MODULOS / VISTAS
+========================= */
+.modulo {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================
+   BD / TABLAS / CONTENEDORES
+========================= */
+.stats-grid,
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.stat-card,
+.kpi-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--card-shadow);
+}
+
+.stat-card h3,
+.kpi-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.stat-card p,
+.kpi-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* =========================
+   MENSAJES / ALERTAS
+========================= */
+.alert,
+.message-box {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.alert-info {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+/* =========================
+   FOOTER SIMPLE OPCIONAL
+========================= */
+.footer-simple {
+    text-align: center;
+    padding: 24px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 980px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 78px;
+        right: 14px;
+        background: var(--primary);
+        padding: 16px;
+        border-radius: 16px;
+        min-width: 260px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.20);
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-card {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .main-content {
+        padding: 18px;
+    }
+
+    .top-navbar {
+        padding: 12px 16px;
+    }
+
+    .brand-title {
+        font-size: 16px;
+    }
+
+    .hero-text h2 {
+        font-size: 26px;
+    }
+
+    .login-box {
+        padding: 24px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .data-table th,
+    .data-table td {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
